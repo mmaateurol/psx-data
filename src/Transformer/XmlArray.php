@@ -49,7 +49,10 @@ class XmlArray implements TransformerInterface
             throw new InvalidArgumentException('Data must be an instanceof DOMDocument');
         }
 
-        return $this->recToXml($data->documentElement);
+        $rootelement=$data->documentElement;
+        $result = new \stdClass();
+        $result->{$rootelement->nodeName}=$this->recToXml($data->documentElement);
+        return $result;
     }
 
     protected function recToXml(DOMElement $element)
