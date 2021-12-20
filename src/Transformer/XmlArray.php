@@ -112,7 +112,7 @@ class XmlArray implements TransformerInterface
      */
     protected function parseValue($value)
     {
-        if (is_numeric($value)) {
+        if (is_numeric($value) &&  ( strlen($value)>1 && strncmp($value, "0", 1) != 0) ) {
             return strpos($value, '.') !== false ? (float) $value : (int) $value;
         } elseif ($value === 'true' || $value === '1') {
             return true;
